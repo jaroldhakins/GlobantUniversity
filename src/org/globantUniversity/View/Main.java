@@ -1,10 +1,12 @@
 package org.globantUniversity.View;
 
+import org.globantUniversity.Data.Student;
 import org.globantUniversity.Data.Subject;
 import org.globantUniversity.Data.Teacher;
 import org.globantUniversity.Data.University;
 import org.globantUniversity.Persistence.DataInitializer;
 
+import javax.swing.text.StyledDocument;
 import java.util.Scanner;
 
 public class Main {
@@ -31,6 +33,7 @@ public class Main {
                     printSubjects(university);
                     break;
                 case "3":
+                    createNewStudent(university);
                     break;
                 case "4":
                     break;
@@ -62,5 +65,29 @@ public class Main {
         System.out.println("Enter the number of the class you need details");
         Integer option = scan.nextInt();
         System.out.println(university.getSubjectList().get(option));
+    }
+
+    public static void createNewStudent(University university) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the name of the student");
+        String name = scan.nextLine();
+        System.out.println("Please write the document number");
+        Integer dni = scan.nextInt();
+        System.out.println("Add the age");
+        Integer age = scan.nextInt();
+
+        Student student = new Student(name, dni, age);
+
+        System.out.println("In which of the following classes do you want to enroll the student");
+        int i = 0;
+        for (Subject subject : university.getSubjectList()) {
+            System.out.println(i + ". " + subject.getName());
+            i++;
+        }
+        System.out.println("Please enter the number of the class you want to enroll");
+        Integer option = scan.nextInt();
+        Subject subject = university.getSubjectList().get(option);
+        university.addStudentToSubject(subject, student);
+        System.out.println("#######-" + name + " have been enrolled with success\n");
     }
 }
