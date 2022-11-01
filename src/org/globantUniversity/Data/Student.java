@@ -13,6 +13,6 @@ public class Student {
 
     @Override
     public String toString(){
-        return "Students: " + this.name;
+        return "Student name: " + this.name;
     }
 }
