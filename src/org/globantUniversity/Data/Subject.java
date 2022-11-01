@@ -9,6 +9,10 @@ public class Subject {
     private Teacher teacher;
     private List<Student> studentList;
 
+    public String getName(){
+        return this.name;
+    }
+
     public Subject (String name, String classroom, FullTimeTeacher teacher) {
         this.name = name;
         this.classroom = classroom;
@@ -22,6 +26,20 @@ public class Subject {
         this.teacher = teacher;
         this.studentList = new ArrayList<>();
     }
+
+    public void addStudents(Student student){
+        this.studentList.add(student);
+    }
+
+    @Override
+    public String toString(){
+        return "Subject: " + this.name +
+                "\nClassroom: " + this.classroom +
+                "\nTeacher: " + this.teacher.getName() +
+                "\nStudents: " + this.studentList;
+
+    }
+
 
 
 }

@@ -10,7 +10,6 @@ public class DataInitializer {
 
     public static University initializeUniversity(){
         University myUniversity = new University("Globant University");
-        loadUniversityStudents(myUniversity);
         loadUniversityTeachers(myUniversity);
         loadUniversitySubjects(myUniversity);
         return myUniversity;
@@ -22,9 +21,10 @@ public class DataInitializer {
         Subject physics = university.addSubjectPart("physics", "104", university.getTeacherList().get(2));
         Subject chemistry = university.addSubjectPart("chemistry", "105", university.getTeacherList().get(3));
 
+        loadUniversityStudents(university, math);
     }
 
-    private static void loadUniversityStudents (University university){
+    private static void loadUniversityStudents (University university, Subject subject){
         Student student1 = new Student("Jarold Hakins", 1, 27);
         Student student2 = new Student("Mario Bross", 12, 40);
         Student student3 = new Student("Luigi 21", 123, 45);
@@ -38,6 +38,8 @@ public class DataInitializer {
         university.enrollStudent(student4);
         university.enrollStudent(student5);
         university.enrollStudent(student6);
+
+        university.addStudentToSubject(subject, student1);
     }
 
     private static void loadUniversityTeachers(University university){
