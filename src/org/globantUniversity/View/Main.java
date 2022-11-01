@@ -1,5 +1,6 @@
 package org.globantUniversity.View;
 
+import org.globantUniversity.Data.Subject;
 import org.globantUniversity.Data.Teacher;
 import org.globantUniversity.Data.University;
 import org.globantUniversity.Persistence.DataInitializer;
@@ -28,7 +29,6 @@ public class Main {
                     break;
                 case "2":
                     printSubjects(university);
-                    //submenu();
                     break;
                 case "3":
                     break;
@@ -37,6 +37,7 @@ public class Main {
                 case "5":
                     break;
                 case "6":
+                    bool = true;
                     break;
                 default:
                     System.out.println("Enter a valid option");
@@ -52,6 +53,14 @@ public class Main {
     }
 
     public static void printSubjects(University university) {
-
+        int i = 0;
+        for (Subject subject : university.getSubjectList()) {
+            System.out.println(i + ". " + subject.getName());
+            i++;
+        }
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the number of the class you need details");
+        Integer option = scan.nextInt();
+        System.out.println(university.getSubjectList().get(option));
     }
 }

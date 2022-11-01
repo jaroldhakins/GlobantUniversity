@@ -3,6 +3,7 @@ package org.globantUniversity.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class University {
     private String name;
     private List<Teacher> teacherList;
@@ -20,6 +21,10 @@ public class University {
         return this.name;
     }
 
+    public List<Subject> getSubjectList(){
+        return this.subjectList;
+    }
+
     public List<Student> getStudentList (){
         return this.studentList;
     }
@@ -28,9 +33,15 @@ public class University {
         return this.teacherList;
     }
 
-    public void enrollStudent(Student student){ this.studentList.add(student); }
+    public void enrollStudent(Student student){
+        this.studentList.add(student);
+    }
 
     public void loadTeacher(Teacher teacher){ this.teacherList.add(teacher); }
+
+    public void addStudentToSubject(Subject subject, Student student) {
+        subject.addStudents(student);
+    }
 
     public Teacher getTeacher(int i){
         return this.teacherList.get(i);
@@ -47,5 +58,7 @@ public class University {
         this.subjectList.add(subject);
         return subject;
     }
+
+
 
 }

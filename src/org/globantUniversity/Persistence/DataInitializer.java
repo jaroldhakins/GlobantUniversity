@@ -10,7 +10,6 @@ public class DataInitializer {
 
     public static University initializeUniversity(){
         University myUniversity = new University("Globant University");
-        loadUniversityStudents(myUniversity);
         loadUniversityTeachers(myUniversity);
         loadUniversitySubjects(myUniversity);
         return myUniversity;
@@ -22,9 +21,13 @@ public class DataInitializer {
         Subject physics = university.addSubjectPart("physics", "104", university.getTeacherList().get(2));
         Subject chemistry = university.addSubjectPart("chemistry", "105", university.getTeacherList().get(3));
 
+        loadUniversityStudents(university, math);
+        loadUniversityStudents(university, philosophy);
+        loadUniversityStudents(university, physics);
+        loadUniversityStudents(university, chemistry);
     }
 
-    private static void loadUniversityStudents (University university){
+    private static void loadUniversityStudents (University university, Subject subject){
         Student student1 = new Student("Jarold Hakins", 1, 27);
         Student student2 = new Student("Mario Bross", 12, 40);
         Student student3 = new Student("Luigi 21", 123, 45);
@@ -32,12 +35,21 @@ public class DataInitializer {
         Student student5 = new Student("Ramon Valdes", 12345, 52);
         Student student6 = new Student("Carlos zemura", 123456, 22);
 
-        university.enrollStudent(student1);
-        university.enrollStudent(student2);
-        university.enrollStudent(student3);
-        university.enrollStudent(student4);
-        university.enrollStudent(student5);
-        university.enrollStudent(student6);
+        if (university.getStudentList().size() <= 6) {
+            university.enrollStudent(student1);
+            university.enrollStudent(student2);
+            university.enrollStudent(student3);
+            university.enrollStudent(student4);
+            university.enrollStudent(student5);
+            university.enrollStudent(student6);
+        }
+
+        university.addStudentToSubject(subject, student1);
+        university.addStudentToSubject(subject, student2);
+        university.addStudentToSubject(subject, student3);
+        university.addStudentToSubject(subject, student4);
+        university.addStudentToSubject(subject, student5);
+        university.addStudentToSubject(subject, student6);
     }
 
     private static void loadUniversityTeachers(University university){
