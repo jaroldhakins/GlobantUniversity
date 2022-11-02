@@ -13,6 +13,8 @@ public class Subject {
         return this.name;
     }
 
+    public Subject(){}
+
     public Subject (String name, String classroom, FullTimeTeacher teacher) {
         this.name = name;
         this.classroom = classroom;
